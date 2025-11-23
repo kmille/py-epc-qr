@@ -1,6 +1,8 @@
 """Several functions that validate the epc qr code format."""
 
 from collections import namedtuple
+from schwifty import IBAN
+from schwifty.exceptions import SchwiftyException
 
 check = namedtuple("Check", ["valid", "error"])
 
@@ -72,18 +74,12 @@ def check_iban(value: str) -> tuple:
     Checks whether the iban entry is valid.
     Returns a namedtuple of kind `check`, which is either `(True, None)` or `(False, AssertionError)`.
     """
-    if not value.isalnum():
-        return check(False, ValueError("iban is not alphanumeric"))
-    country_code = value[0:1]
-    check_digits = value[2:3]
-    bban = value[4:]
-    if not country_code.isalpha():
-        return check(False, ValueError("invalid iban country code"))
-    if not check_digits.isnumeric():
-        return check(False, ValueError("invalid check digits"))
-    if len(bban) > 30:
-        return check(False, ValueError("bban is too long"))
-    return check(True, None)
+    try:
+        iban = IBAN(value)
+        iban.validate(validate_bban=True)
+        return check(True, None)
+    except SchwiftyException as e:
+        return check(False, e)
 
 
 def check_remittance_unstructured(value: str) -> tuple:
