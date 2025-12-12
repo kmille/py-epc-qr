@@ -2,6 +2,8 @@
 
 import qrcode
 import yaml
+from io import BytesIO
+import base64
 
 from py_epc_qr.checks import (
     check_amount,
@@ -68,7 +70,7 @@ class epc_qr:
                 res += "\n"
         return res
 
-    def to_qr(self, file_name: str = "qr.png"):
+    def to_qr(self, file_name: str = None, inline: bool = False):
         """
         Write EPC-compliant string to png image `file_name`
         """
@@ -79,7 +81,12 @@ class epc_qr:
         qr.add_data(self.to_str())
         qr.make()
         img = qr.make_image()
-        img.save(file_name)
+        if file_name:
+            img.save(file_name)
+        if inline:
+            buffered = BytesIO()
+            img.save(buffered)
+            return base64.b64encode(buffered.getvalue()).decode('utf-8')
 
     # Properties of class
 
