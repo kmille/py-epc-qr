@@ -1,19 +1,22 @@
-[tool.poetry]
+[project]
 name = "py-epc-qr"
 version = "0.1.4"
 description = "Generate EPC-compatible QR codes for wire transfers"
-authors = ["timueh <t.muehlpfordt@mailbox.org>"]
+authors = [
+    {name = "kmille", email = "github@androidloves.me"}
+]
 license = "MIT"
 readme = "README.md"
 homepage = "https://github.com/timueh/py-epc-qr"
 repository = "https://github.com/timueh/py-epc-qr"
 documentation = "https://github.com/timueh/py-epc-qr"
+requires-python = ">=3.10,<4.0"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.10"
 qrcode = {extras = ["pil"], version = "^8.2"}
 pyyaml = "^6.0.3"
-typer = "^0.20.0"
+typer = "^0.24.1"
 schwifty = "*"
 
 [tool.poetry.dev-dependencies]
