@@ -1,6 +1,6 @@
 [project]
 name = "py-epc-qr"
-version = "0.1.5"
+version = "0.1.6"
 description = "Generate EPC-compatible QR codes for wire transfers"
 authors = [
     {name = "kmille", email = "github@androidloves.me"}
