@@ -87,12 +87,12 @@ def check_remittance_unstructured(value: str) -> tuple:
     Checks whether the unstructured remittance entry is valid.
     Returns a namedtuple of kind `check`, which is either `(True, None)` or `(False, AssertionError)`.
     """
-    if not value.replace(" ", "").isalnum():
-        return check(False, ValueError("unstructered remittance is non alphanumeric"))
-    if len(value) > 140:
-        return check(
-            False, ValueError("unstructured remittance exceeds 140 characters")
-        )
+    #if not value.replace(" ", "").isalnum():
+    #    return check(False, ValueError("unstructered remittance is non alphanumeric"))
+    #if len(value) > 140:
+    #    return check(
+    #        False, ValueError("unstructured remittance exceeds 140 characters")
+    #    )
     return check(True, None)
 
 
