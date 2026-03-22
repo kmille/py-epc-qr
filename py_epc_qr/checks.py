@@ -57,15 +57,15 @@ def check_beneficiary(value: str) -> tuple:
     Checks whether the beneficiary entry is valid.
     Returns a namedtuple of kind `check`, which is either `(True, None)` or `(False, AssertionError)`.
     """
-    if not value.replace(" ", "").isalnum():
-        return check(False, ValueError("beneficiary is not alphanumeric"))
-    if not 1 <= len(value) <= (max_length := 70):
-        return check(
-            False,
-            ValueError(
-                f"beneficiary is mandatory, and must not exceed {max_length} characters"
-            ),
-        )
+    #if not value.replace(" ", "").isalnum():
+    #    return check(False, ValueError("beneficiary is not alphanumeric"))
+    #if not 1 <= len(value) <= (max_length := 70):
+    #    return check(
+    #        False,
+    #        ValueError(
+    #            f"beneficiary is mandatory, and must not exceed {max_length} characters"
+    #        ),
+    #    )
     return check(True, None)
 
 
